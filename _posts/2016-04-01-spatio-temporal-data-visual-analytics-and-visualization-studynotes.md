@@ -3,7 +3,7 @@ title: 试验18
 layout: post
 thread: 165
 date: 2016-04-01
-author: Joe Jiang
+author: Zhu Pei
 categories: documents
 tags: [visualization]
 excerpt: 强行试验。

@@ -3,7 +3,7 @@ title: 试验16
 layout: post
 thread: 158
 date: 2015-01-03 12:00
-author: Joe Jiang
+author: Zhu Pei
 categories: Student
 tags: [Ruby on rails]
 excerpt: 中二价值观。

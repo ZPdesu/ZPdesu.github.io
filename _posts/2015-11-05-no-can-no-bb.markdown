@@ -1,12 +1,12 @@
 ---
-title: 到底能不能行
+title:
 layout: post
 thread: 163
 date: 2015-11-05
-author: Joe Jiang
+author: Zhu Pei
 categories: student
 tags: [UCAS]
-excerpt: yyyyyyyyyyyyyyyyyyyyyyyyyy。
+excerpt: Xman VS Zman 。
 ---
 
 
