@@ -1,7 +1,7 @@
 ---
 date: 2016-09-24
 layout: keynote
-title: Step by Step - Introduction, installation and simple examples of D3
+title: 试验19
 thread: 167
 categories: Documents
 tags: [D3, Visualization]
@@ -9,15 +9,10 @@ excerpt: Introduction, installation and simple examples
 iframe: https://hijiangtao.github.io/slides/s-D3-Basic-Tutorial/
 ---
 
-> More at here.
+试验试验试验试验试验试验试验试验试验试验
 
-### [Watch Slides on Mobile phones](https://hijiangtao.github.io/slides/s-D3-Basic-Tutorial/)
+验试验试验试验试验试验试验试验试验试验试验
 
-![](/assets/in-post/2016-09-24-D3-Basic-Tutorial.png)
+验试验试验试验试验试验试验试验试验试验试验
 
-### D3 Basic Tutorial
-
-- D3 Introduction and demo
-- Installing, IDE, etc
-- Coding: visualize your first chart
-- More
+验试验试验试验试验试验试验试验试验试验试验

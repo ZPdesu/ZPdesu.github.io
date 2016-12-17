@@ -1,5 +1,5 @@
 ---
-title: Learning in IEEE VIS 2016
+title: 试验22
 layout: keynote
 thread: 169
 date: 2016-11-10
@@ -10,15 +10,10 @@ excerpt: I went to Baltimore, USA last week. It's a city near Washington D.C, an
 iframe: https://hijiangtao.github.io/slides/s-IEEEVIS2016/
 ---
 
-> More at here.
+试验试验试验试验试验试验试验试验试验试验
 
-### [Watch Slides on Mobile phones](https://hijiangtao.github.io/slides/s-IEEEVIS2016/)
+验试验试验试验试验试验试验试验试验试验试验
 
-![](/assets/in-post/2016-11-10-Learning-in-IEEEVIS-2016.png)
+验试验试验试验试验试验试验试验试验试验试验
 
-### Outline
-
-- VIS PROGRAM
-- VAST Sessions
-- Dr. Zhao's works
-- Posters and Arts Program
+验试验试验试验试验试验试验试验试验试验试验
