@@ -10,7 +10,7 @@ locale                   : "en"
 title                    : "ZP desu"
 title_separator          : "-"
 name                     : "Zhu Peihao"
-description              : "All I'm saying is inside, I had the element of surprise."
+description              : "Personal blog."
 url                      : # "https://ZPdesu.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "ZPdesu/ZPdesu.github.io"
@@ -19,7 +19,8 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 words_per_minute         : 200
 comments:
   provider               : "custom"
-  duoshuo                : datablog
+  duoshuo : # datablog
+    project_name         : 'zpblog'
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -29,6 +30,9 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : "dark" # "light" (default), "dark"
+atom_feed:
+  path                   : # blank (default) uses feed.xml
+
 staticman:
   allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : # "master", "gh-pages"
@@ -45,8 +49,6 @@ staticman:
       type               : "date"
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
-atom_feed:
-  path                   : # blank (default) uses feed.xml
 
 # Front Matter Defaults
 defaults:
@@ -109,7 +111,7 @@ author:
   codepen          :
   dribbble         :
   flickr           :
-  facebook         :
+  facebook         : neu.zhupeihao
   foursquare       :
   github           : ZPdesu
   google_plus      :
@@ -185,7 +187,7 @@ kramdown:
 
 
 # Outputting
-permalink: /:year/:month/:day/:title/
+permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
