@@ -4,7 +4,7 @@
 
 ## Features
 
-The blog is based on mmistakes' contribution for [Minimal Mistakes Jekyll Theme](https://github.com/mmistakes/minimal-mistakes).
+The blog is based on mmistakes' contribution for [Minimal Mistakes Jekyll Theme](https://github.com/mmistakes/minimal-mistakes) and influenced by PQ and Joe.
 
 **Usage**: a extra `iframe` is used to define the url of your HTML Presentation, the format of `keynote` layout shows below: 
 
