@@ -4,7 +4,7 @@ layout: post
 title: 试验10
 thread: 90
 categories: Tutorial
-tags: [R, hadoop, Linux]
+tags: [机器学习]
 excerpt: 
 ---
 

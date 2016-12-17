@@ -1,10 +1,10 @@
 ---
-date: 2014-02-22
+date: 2014-02-20
 layout: post
 title: 试验7
 thread: 47
 categories: Read
-tags: [宇宙]
+tags: [计算机视觉]
 excerpt: Why Explore Space?
 ---
 

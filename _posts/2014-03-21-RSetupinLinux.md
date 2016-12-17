@@ -4,7 +4,7 @@ layout: post
 title: 换个试验9
 thread: 89
 categories: Tutorial
-tags: [R, Linux]
+tags: [Linux]
 excerpt: 
 ---
 

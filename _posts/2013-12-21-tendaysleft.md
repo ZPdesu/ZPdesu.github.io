@@ -4,7 +4,7 @@ layout: post
 title: 试验1
 thread: 9
 categories: Student
-tags: [BIT]
+tags: [Python]
 excerpt: 情况1.
 ---
 

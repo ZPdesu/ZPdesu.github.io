@@ -4,7 +4,7 @@ layout: post
 title: 漏了试验1
 thread: 36
 categories: Tutorial
-tags: [hadoop]
+tags: [计算机视觉, 深度学习]
 excerpt: 
 ---
 

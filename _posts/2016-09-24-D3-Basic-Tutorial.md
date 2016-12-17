@@ -4,7 +4,7 @@ layout: keynote
 title: 试验19
 thread: 167
 categories: Documents
-tags: [D3, Visualization]
+tags: [可视化]
 excerpt: Introduction, installation and simple examples
 iframe: https://hijiangtao.github.io/slides/s-D3-Basic-Tutorial/
 ---

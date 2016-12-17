@@ -4,7 +4,7 @@ layout: post
 title: 试验13
 thread: 122
 categories: Tutorial
-tags: [spark, data]
+tags: [图像处理]
 excerpt:
 ---
 

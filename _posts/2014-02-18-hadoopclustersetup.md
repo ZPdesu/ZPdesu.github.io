@@ -4,7 +4,7 @@ layout: post
 title: 试验4
 thread: 38
 categories: Tutorial
-tags: [hadoop]
+tags: [计算机视觉]
 excerpt: 
 ---
 

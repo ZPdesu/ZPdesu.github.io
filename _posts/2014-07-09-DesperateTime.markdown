@@ -4,7 +4,7 @@ layout: post
 title: 试验14
 thread: 137
 categories: Student
-tags: [BIT]
+tags: [git]
 excerpt: 2014-07-09
 ---
 

@@ -1,12 +1,12 @@
 ---
 layout: single
 permalink: /about
-title: "About"
+title: "Contact me"
 ---
 
 {% include base_path %}
 
-ZPdesu,  朱培 です
+**ZPdesu,  朱培 です**
 
 ### Resume / 个人简历
 

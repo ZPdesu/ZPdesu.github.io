@@ -4,12 +4,13 @@ layout: post
 title: 试验2
 thread: 22
 categories: Documents
-tags: [数学建模]
+tags: [Python]
 excerpt: 
 ---
 
-参加数学建模，刚拿到题目便开始了繁忙的翻译工作，以下为我的翻译成果，顺带附上一些参考资料与常识。
+验试验试验试验试验试验试验试验试验试验试验
 
+验试验试验试验试验试验试验试验试验试验试验
 ### Problem A: 
 
 验试验试验试验试验试验试验试验试验试验试验

@@ -5,7 +5,7 @@ thread: 158
 date: 2015-01-03 12:00
 author: Joe Jiang
 categories: Student
-tags: [BIT]
+tags: [Ruby on rails]
 excerpt: 终于，该和旧时光说再见了。
 ---
 
