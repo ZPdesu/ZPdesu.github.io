@@ -6,11 +6,11 @@ title: "Contact me"
 
 {% include base_path %}
 
-**ZPdesu,  朱培 です**
+**ZPdesu,  朱培**
 
 ### Resume / 个人简历
 
-* [English Version (Update to Dec, 2016)](/CV.pdf)
+* [(Update to Dec, 2016)](/CV.pdf)
 
 
 ### Contact / 联系方式
