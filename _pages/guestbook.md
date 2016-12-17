@@ -8,4 +8,3 @@ thread: 1
 
 Leave comments.
 
-Talk。
