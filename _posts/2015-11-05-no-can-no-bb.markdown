@@ -6,7 +6,7 @@ date: 2015-11-05
 author: Joe Jiang
 categories: student
 tags: [UCAS]
-excerpt: 同样是读书，人家过得春风得意，为什么我天天跟非洲难民一样。
+excerpt: yyyyyyyyyyyyyyyyyyyyyyyyyy。
 ---
 
 
