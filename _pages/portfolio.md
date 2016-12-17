@@ -1,6 +1,6 @@
 ---
 layout: splash
-permalink: /portfolio
+permalink: /portfolio/
 title: Portfolio
 ---
 

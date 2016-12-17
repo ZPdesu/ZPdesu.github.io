@@ -1,6 +1,6 @@
 ---
 layout: archive
-permalink: /posts
+permalink: /posts/
 title: "Posts"
 ---
 

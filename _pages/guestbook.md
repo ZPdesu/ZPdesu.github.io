@@ -1,7 +1,7 @@
 ---
 layout: single2
 comments: true
-permalink: /guestbook
+permalink: /guestbook/
 author_profile: true
 title: New Day
 
