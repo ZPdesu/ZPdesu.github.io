@@ -19,8 +19,8 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 words_per_minute         : 200
 comments:
   provider               : "custom"
-  duoshuo : # datablog
-    project_name         : 'zpblog'
+  duoshuo:
+    project_name         : 'ZhuPeiblog'
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
