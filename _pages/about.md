@@ -10,7 +10,7 @@ title: "Contact me"
 
 ### Resume / 个人简历
 
-* [(Update to Dec, 2016)](/CV.pdf)
+* [(Update to Dec, 2016)]()
 
 
 ### Contact / 联系方式
