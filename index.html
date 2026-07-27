@@ -1,1045 +1,906 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en" data-theme="light">
 
 <head>
-
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
   <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Peihao Zhu</title>
+  <meta name="description"
+    content="Peihao Zhu — Senior Applied Scientist at Adobe Firefly, focused on long-video / long-horizon generation. Generative AI, video foundation models, image synthesis." />
+  <meta name="author" content="Peihao Zhu" />
 
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-  <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-  <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-  <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-  <style>
-    h1 {
-      font-size: 34px;
-    }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Peihao Zhu" />
+  <meta property="og:description"
+    content="Senior Applied Scientist at Adobe Firefly, focused on long-video / long-horizon generation." />
+  <meta property="og:image" content="images/view.jpg" />
+  <meta property="og:url" content="https://zpdesu.github.io" />
 
-    h1.title {
-      font-size: 38px;
-    }
-
-    h2 {
-      font-size: 30px;
-    }
-
-    h3 {
-      font-size: 24px;
-    }
-
-    h4 {
-      font-size: 18px;
-    }
-
-    h5 {
-      font-size: 16px;
-    }
-
-    h6 {
-      font-size: 12px;
-    }
-
-    code {
-      color: inherit;
-      background-color: rgba(0, 0, 0, 0.04);
-    }
-
-    pre:not([class]) {
-      background-color: white
-    }
-  </style>
-  <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-  <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-  <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-  <script src="site_libs/navigation-1.1/tabsets.js"></script>
-  <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-  <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+  <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
   <link rel="manifest" href="favicon_io/site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Icons (Font Awesome + Academicons, kept locally) -->
+  <link rel="stylesheet" href="css/all.min.css" />
   <link rel="stylesheet" href="css/academicons.min.css" />
 
-  <style type="text/css">
-    code {
-      white-space: pre-wrap;
-    }
-
-    span.smallcaps {
-      font-variant: small-caps;
-    }
-
-    span.underline {
-      text-decoration: underline;
-    }
-
-    div.column {
-      display: inline-block;
-      vertical-align: top;
-      width: 50%;
-    }
-
-    div.hanging-indent {
-      margin-left: 1.5em;
-      text-indent: -1.5em;
-    }
-
-    ul.task-list {
-      list-style: none;
-    }
-  </style>
-
-  <style type="text/css">
-    code {
-      white-space: pre;
-    }
-  </style>
-  <script type="text/javascript">
-    if (window.hljs) {
-      hljs.configure({ languages: [] });
-      hljs.initHighlightingOnLoad();
-      if (document.readyState && document.readyState === "complete") {
-        window.setTimeout(function () { hljs.initHighlighting(); }, 0);
-      }
-    }
+  <!-- Prevent theme flash: set theme before paint -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) { }
+    })();
   </script>
 
-
-
-
-  <style type="text/css">
-    .main-container {
-      max-width: 940px;
-      margin-left: auto;
-      margin-right: auto;
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --bg: #fbfbf9;
+      --surface: #ffffff;
+      --surface-2: #f5f4f1;
+      --text: #16161a;
+      --muted: #66666e;
+      --faint: #9a9aa2;
+      --border: rgba(20, 20, 25, 0.09);
+      --border-strong: rgba(20, 20, 25, 0.16);
+      --accent: #e0562e;
+      --accent-ink: #c4451f;
+      --accent-soft: rgba(224, 86, 46, 0.10);
+      --shadow: 0 1px 2px rgba(20, 20, 25, .04), 0 8px 24px rgba(20, 20, 25, .05);
+      --shadow-hover: 0 2px 4px rgba(20, 20, 25, .06), 0 16px 40px rgba(20, 20, 25, .09);
+      --radius: 16px;
+      --maxw: 760px;
     }
 
-    img {
-      max-width: 100%;
+    [data-theme="dark"] {
+      --bg: #0e0e10;
+      --surface: #17171b;
+      --surface-2: #1e1e23;
+      --text: #ececef;
+      --muted: #a2a2ac;
+      --faint: #6f6f79;
+      --border: rgba(255, 255, 255, 0.10);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --accent: #ff7a54;
+      --accent-ink: #ff8f6e;
+      --accent-soft: rgba(255, 122, 84, 0.14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+      --shadow-hover: 0 2px 4px rgba(0, 0, 0, .35), 0 16px 40px rgba(0, 0, 0, .5);
     }
 
-    .tabbed-pane {
-      padding-top: 12px;
+    /* ---------- Base ---------- */
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16.5px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      transition: background .3s ease, color .3s ease;
     }
 
-    .html-widget {
-      margin-bottom: 20px;
+    a { color: var(--accent-ink); text-decoration: none; transition: color .15s ease; }
+    a:hover { color: var(--accent); }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s ease, background .3s ease;
+    }
+    .nav.scrolled { border-bottom-color: var(--border); }
+    .nav-inner {
+      max-width: var(--maxw); margin: 0 auto; padding: 13px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-brand {
+      font-weight: 600; font-size: 15.5px; color: var(--text); letter-spacing: -.01em;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a {
+      color: var(--muted); font-size: 14.5px; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .theme-toggle {
+      background: transparent; border: 1px solid var(--border-strong);
+      color: var(--muted); width: 34px; height: 34px; border-radius: 9px;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 14px; transition: all .15s ease; flex-shrink: 0;
+    }
+    .theme-toggle:hover { color: var(--text); border-color: var(--faint); }
+    .theme-toggle .fa-sun { display: none; }
+    [data-theme="dark"] .theme-toggle .fa-sun { display: inline; }
+    [data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+
+    @media (max-width: 640px) {
+      .nav-links a:not(.nav-cta) { display: none; }
     }
 
-    button.code-folding-btn:focus {
-      outline: none;
+    /* ---------- Hero ---------- */
+    .hero { padding: 132px 0 40px; }
+    .hero-top { display: flex; align-items: center; gap: 26px; }
+    .hero-photo {
+      width: 108px; height: 108px; border-radius: 50%; object-fit: cover;
+      flex-shrink: 0; box-shadow: var(--shadow); border: 3px solid var(--surface);
+    }
+    .hero h1 {
+      font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+      font-size: 42px; line-height: 1.05; letter-spacing: -.02em; margin: 0 0 8px;
+    }
+    .hero-role { font-size: 16px; color: var(--muted); margin: 0; }
+    .hero-role strong { color: var(--text); font-weight: 600; }
+    .hero-role .at { color: var(--accent-ink); font-weight: 600; }
+
+    .hero-bio { margin: 26px 0 0; color: var(--text); font-size: 16.5px; }
+    .hero-bio p { margin: 0 0 12px; }
+    .hero-bio p:last-child { margin-bottom: 0; }
+
+    .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .social a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 10px; font-size: 14px; font-weight: 500;
+      color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+      box-shadow: var(--shadow); transition: all .16s ease;
+    }
+    .social a:hover { color: var(--text); border-color: var(--border-strong); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+    .social a i { font-size: 15px; }
+
+    @media (max-width: 540px) {
+      .hero { padding-top: 108px; }
+      .hero-top { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .hero h1 { font-size: 36px; }
     }
 
-    summary {
-      display: list-item;
+    /* ---------- Sections ---------- */
+    section { padding: 34px 0; }
+    .sec-head {
+      display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px;
+    }
+    .sec-head h2 {
+      font-family: 'Fraunces', Georgia, serif; font-weight: 500;
+      font-size: 26px; letter-spacing: -.01em; margin: 0;
+    }
+    .sec-rule { flex: 1; height: 1px; background: var(--border); }
+
+    /* ---------- Project cards ---------- */
+    .projects { display: grid; gap: 16px; }
+    .project {
+      display: grid; grid-template-columns: 128px 1fr; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .project:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--border-strong); }
+    .project-thumb {
+      width: 128px; height: 96px; border-radius: 11px; object-fit: cover;
+      background: var(--surface-2); align-self: center;
+    }
+    .project-thumb.ph {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 26px; color: #fff; font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .project-thumb.logo {
+      display: flex; align-items: center; justify-content: center; padding: 16px;
+      background: var(--surface-2); border: 1px solid var(--border);
+    }
+    .project-thumb.logo img { width: 100%; height: 100%; object-fit: contain; }
+    .project-body { min-width: 0; }
+    .project h3 { margin: 2px 0 3px; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+    .project .meta { font-size: 13.5px; color: var(--muted); margin: 0 0 8px; }
+    .project .meta .role { color: var(--accent-ink); font-weight: 500; }
+    .project p.desc { margin: 0 0 10px; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+
+    .links { display: flex; flex-wrap: wrap; gap: 7px; }
+    .links a {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12.5px; font-weight: 500; padding: 3px 10px; border-radius: 7px;
+      color: var(--muted); background: var(--surface-2); border: 1px solid var(--border);
+    }
+    .links a:hover { color: var(--text); border-color: var(--border-strong); background: var(--accent-soft); }
+    .links a i { font-size: 11px; }
+
+    @media (max-width: 540px) {
+      .project { grid-template-columns: 1fr; }
+      .project-thumb { width: 100%; height: 150px; }
     }
 
-    pre code {
-      padding: 0;
+    /* ---------- Publications ---------- */
+    .pub-year {
+      font-family: 'Fraunces', serif; font-size: 15px; color: var(--faint);
+      font-weight: 600; margin: 22px 0 12px; letter-spacing: .02em;
     }
-  </style>
-
-
-  <style type="text/css">
-    .dropdown-submenu {
-      position: relative;
+    .pub {
+      display: grid; grid-template-columns: 108px 1fr; gap: 18px;
+      padding: 14px 0; border-top: 1px solid var(--border);
     }
-
-    .dropdown-submenu>.dropdown-menu {
-      top: 0;
-      left: 100%;
-      margin-top: -6px;
-      margin-left: -1px;
-      border-radius: 0 6px 6px 6px;
+    .pub:first-of-type { border-top: none; }
+    .pub-thumb {
+      width: 108px; height: 68px; border-radius: 9px; object-fit: cover;
+      background: var(--surface-2); align-self: center;
     }
-
-    .dropdown-submenu:hover>.dropdown-menu {
-      display: block;
+    .pub-thumb.ph {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Fraunces', serif; font-size: 17px; color: #fff; font-weight: 500;
     }
+    .pub-body { min-width: 0; }
+    .pub-title { font-size: 15.5px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 3px; line-height: 1.35; }
+    .pub-authors { font-size: 13.5px; color: var(--muted); margin: 0 0 2px; line-height: 1.45; }
+    .pub-authors .me { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .pub-venue { font-size: 13px; color: var(--faint); font-style: italic; margin: 0 0 8px; }
+    .pub-venue .oral { color: var(--accent-ink); font-style: normal; font-weight: 600; }
 
-    .dropdown-submenu>a:after {
-      display: block;
-      content: " ";
-      float: right;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-      border-width: 5px 0 5px 5px;
-      border-left-color: #cccccc;
-      margin-top: 5px;
-      margin-right: -10px;
+    #more-pubs { display: none; }
+    #more-pubs.show { display: block; }
+    .show-all {
+      margin-top: 20px; text-align: center;
     }
-
-    .dropdown-submenu:hover>a:after {
-      border-left-color: #adb5bd;
+    .show-all button {
+      background: var(--surface); border: 1px solid var(--border-strong);
+      color: var(--text); font: inherit; font-size: 14px; font-weight: 500;
+      padding: 9px 20px; border-radius: 10px; cursor: pointer; transition: all .15s ease;
+      display: inline-flex; align-items: center; gap: 8px;
     }
+    .show-all button:hover { border-color: var(--faint); box-shadow: var(--shadow); }
+    .show-all button i { font-size: 11px; transition: transform .2s ease; }
+    .show-all button.open i { transform: rotate(180deg); }
 
-    .dropdown-submenu.pull-left {
-      float: none;
-    }
-
-    .dropdown-submenu.pull-left>.dropdown-menu {
-      left: -100%;
-      margin-left: 10px;
-      border-radius: 6px 0 6px 6px;
-    }
-  </style>
-
-  <script type="text/javascript">
-    // manage active state of menu based on current page
-    $(document).ready(function () {
-      // active menu anchor
-      href = window.location.pathname
-      href = href.substr(href.lastIndexOf('/') + 1)
-      if (href === "")
-        href = "index.html";
-      var menuAnchor = $('a[href="' + href + '"]');
-
-      // mark it active
-      menuAnchor.tab('show');
-
-      // if it's got a parent navbar menu mark it active as well
-      menuAnchor.closest('li.dropdown').addClass('active');
-
-      // Navbar adjustments
-      var navHeight = $(".navbar").first().height() + 15;
-      var style = document.createElement('style');
-      var pt = "padding-top: " + navHeight + "px; ";
-      var mt = "margin-top: -" + navHeight + "px; ";
-      var css = "";
-      // offset scroll position for anchor links (for fixed navbar)
-      for (var i = 1; i <= 6; i++) {
-        css += ".section h" + i + "{ " + pt + mt + "}\n";
-      }
-      style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-      document.head.appendChild(style);
-    });
-  </script>
-
-  <!-- tabsets -->
-
-  <style type="text/css">
-    .tabset-dropdown>.nav-tabs {
-      display: inline-table;
-      max-height: 500px;
-      min-height: 44px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+    @media (max-width: 540px) {
+      .pub { grid-template-columns: 1fr; gap: 12px; }
+      .pub-thumb { width: 100%; height: 120px; }
     }
 
-    .tabset-dropdown>.nav-tabs>li.active:before {
-      content: "";
-      font-family: 'Glyphicons Halflings';
-      display: inline-block;
-      padding: 10px;
-      border-right: 1px solid #ddd;
+    /* ---------- Experience / Education timeline ---------- */
+    .timeline { display: grid; gap: 4px; }
+    .tl-item {
+      display: grid; grid-template-columns: 48px 1fr auto; gap: 16px; align-items: center;
+      padding: 12px 4px; border-bottom: 1px solid var(--border);
     }
-
-    .tabset-dropdown>.nav-tabs.nav-tabs-open>li.active:before {
-      content: "&#xe258;";
+    .tl-item:last-child { border-bottom: none; }
+    .tl-logo {
+      width: 44px; height: 44px; border-radius: 10px; object-fit: contain;
+      background: var(--surface); border: 1px solid var(--border); padding: 5px;
+    }
+    .tl-logo.mono {
+      display: flex; align-items: center; justify-content: center; padding: 0;
+      font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px; color: #fff;
       border: none;
     }
+    .tl-main { min-width: 0; }
+    .tl-role { font-size: 15px; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+    .tl-org { font-size: 13.5px; color: var(--muted); margin: 0; }
+    .tl-date { font-size: 13px; color: var(--faint); white-space: nowrap; text-align: right; }
 
-    .tabset-dropdown>.nav-tabs.nav-tabs-open:before {
-      content: "";
-      font-family: 'Glyphicons Halflings';
-      display: inline-block;
-      padding: 10px;
-      border-right: 1px solid #ddd;
+    @media (max-width: 540px) {
+      .tl-item { grid-template-columns: 40px 1fr; }
+      .tl-date { grid-column: 2; text-align: left; margin-top: 2px; }
     }
 
-    .tabset-dropdown>.nav-tabs>li.active {
-      display: block;
+    /* ---------- Awards ---------- */
+    .awards { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
+    .awards li {
+      display: flex; justify-content: space-between; gap: 16px; align-items: baseline;
+      padding: 10px 4px; border-bottom: 1px solid var(--border); font-size: 15px;
     }
+    .awards li:last-child { border-bottom: none; }
+    .awards .yr { color: var(--faint); font-size: 13px; white-space: nowrap; }
 
-    .tabset-dropdown>.nav-tabs>li>a,
-    .tabset-dropdown>.nav-tabs>li>a:focus,
-    .tabset-dropdown>.nav-tabs>li>a:hover {
-      border: none;
-      display: inline-block;
-      border-radius: 4px;
-      background-color: transparent;
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--border); margin-top: 30px;
+      padding: 36px 0 60px; text-align: center;
     }
+    .foot-contact { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 18px; }
+    .foot-contact span { color: var(--muted); font-size: 14.5px; }
+    .foot-contact a { font-weight: 500; }
+    .foot-note { color: var(--faint); font-size: 13px; margin: 0; }
 
-    .tabset-dropdown>.nav-tabs.nav-tabs-open>li {
-      display: block;
-      float: none;
-    }
-
-    .tabset-dropdown>.nav-tabs>li {
-      display: none;
-    }
-  </style>
-
-  <!-- code folding -->
-
-
-
-  <style type="text/css">
-    #TOC {
-      margin: 25px 0px 20px 0px;
-    }
-
-    @media (max-width: 768px) {
-      #TOC {
-        position: relative;
-        width: 100%;
-      }
-    }
-
-    @media print {
-      .toc-content {
-        /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-        float: right;
-      }
-    }
-
-    .toc-content {
-      padding-left: 30px;
-      padding-right: 40px;
-    }
-
-    div.main-container {
-      max-width: 1200px;
-    }
-
-    div.tocify {
-      width: 20%;
-      max-width: 260px;
-      max-height: 85%;
-    }
-
-    @media (min-width: 768px) and (max-width: 991px) {
-      div.tocify {
-        width: 25%;
-      }
-    }
-
-    @media (max-width: 767px) {
-      div.tocify {
-        width: 100%;
-        max-width: none;
-      }
-    }
-
-    .tocify ul,
-    .tocify li {
-      line-height: 20px;
-    }
-
-    .tocify-subheader .tocify-item {
-      font-size: 0.90em;
-    }
-
-    .tocify .list-group-item {
-      border-radius: 0px;
+    /* reveal-on-scroll */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
-
-
-
 </head>
 
 <body>
 
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">Peihao&nbsp;Zhu</a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a class="nav-cta" href="files/Peihao%20Zhu_CV.pdf" target="_blank" rel="noopener">CV</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-  <div class="container-fluid main-container">
+  <span id="top"></span>
 
+  <!-- ============ HERO ============ -->
+  <header class="hero wrap">
+    <div class="hero-top">
+      <img class="hero-photo" src="images/view.jpg" alt="Peihao Zhu">
+      <div>
+        <h1>Peihao Zhu</h1>
+        <p class="hero-role">
+          <strong>Senior Applied Scientist</strong> <span class="at">·</span> Adobe Firefly
+        </p>
+      </div>
+    </div>
 
-    <!-- setup 3col/9col grid for toc_float and main content  -->
-    <div class="row">
-      <div class="col-sm-12 col-md-4 col-lg-3">
-        <div id="TOC" class="tocify">
-        </div>
+    <div class="hero-bio">
+      <p>
+        I am a Senior Applied Scientist on the <a href="https://firefly.adobe.com" target="_blank"
+          rel="noopener">Adobe Firefly</a> team, where I focus on
+        <strong>long-video generation</strong> — pushing the visual and temporal consistency,
+        controllability, and efficiency of video foundation models beyond the short-clip regime.
+        Previously I was a Senior Research Scientist on the
+        <a href="https://team.doubao.com/en/topseed" target="_blank" rel="noopener">ByteDance Seed</a> team,
+        where I was a core contributor to video generation foundation models including Seedance and Seaweed.
+      </p>
+      <p>
+        I completed my Ph.D. at <a href="https://cemse.kaust.edu.sa/vcc" target="_blank" rel="noopener">VCC</a>,
+        <a href="https://www.kaust.edu.sa/en" target="_blank" rel="noopener">KAUST</a>, advised by Prof.
+        <a href="http://peterwonka.net/" target="_blank" rel="noopener">Peter Wonka</a>.
+        My research centers on generative AI — diffusion models for video generation, image synthesis and
+        editing — and computer vision and graphics more broadly.
+      </p>
+    </div>
+
+    <div class="social">
+      <a href="mailto:zhupeishishen@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="https://scholar.google.com/citations?user=Gn8URq0AAAAJ&hl=en" target="_blank" rel="noopener"><i
+          class="ai ai-google-scholar"></i> Scholar</a>
+      <a href="https://github.com/ZPdesu" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+      <a href="files/Peihao%20Zhu_CV.pdf" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> CV</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ============ SELECTED WORK ============ -->
+    <section id="work" class="reveal">
+      <div class="sec-head">
+        <h2>Selected Work</h2>
+        <span class="sec-rule"></span>
       </div>
 
-      <div class="toc-content col-sm-12 col-md-8 col-lg-9">
+      <div class="projects">
 
-
-
-
-        <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.html">Peihao Zhu</a>
+        <!-- Firefly Gen6 -->
+        <article class="project">
+          <div class="project-thumb logo"><img src="images/firefly.svg" alt="Adobe Firefly"></div>
+          <div class="project-body">
+            <h3>Adobe Firefly Video — Gen6 / Gen6-long</h3>
+            <p class="meta"><span class="role">Core Contributor</span> · Video Foundation Models · Jan 2026 – Present</p>
+            <p class="desc">A main contributor to Adobe's next-generation video foundation model, leading Gen6-long
+              from research exploration through model delivery — improving long-video visual and temporal consistency
+              while optimizing training and inference efficiency.</p>
+            <div class="links">
+              <a href="https://firefly.adobe.com/generate/video" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> website</a>
             </div>
-            <div id="navbar" class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li>
-                  <a href="#pub">Publications</a>
-                </li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li>
-                  <a href="https://scholar.google.com/citations?user=Gn8URq0AAAAJ&hl=en">
-                    <span class="ai ai-google-scholar ai-lg"></span>
+          </div>
+        </article>
 
-                  </a>
-                </li>
-                <li>
-                  <a href="https://github.com/ZPdesu">
-                    <span class="fab fa-github fa-lg"></span>
-
-                  </a>
-                </li>
-              </ul>
+        <!-- MMCORE -->
+        <article class="project">
+          <img class="project-thumb" src="images/mmcore.jpg" alt="MMCORE">
+          <div class="project-body">
+            <h3>MMCORE — Multimodal Image Editing Foundation Model</h3>
+            <p class="meta"><span class="role">Core Contributor</span> · Multimodal Image Editing · Jul 2025 – Dec 2025</p>
+            <p class="desc">Drove core model development and large-scale experimentation for MMCORE, a unified multimodal
+              foundation model for high-quality, instruction-guided image editing — contributing across training,
+              evaluation, and research iteration.</p>
+            <div class="links">
+              <a href="https://arxiv.org/pdf/2604.19902" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://zijieli-jlee.github.io/mmcore-website/" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> website</a>
             </div>
-            <!--/.nav-collapse -->
           </div>
-          <!--/.container -->
-        </div>
-        <!--/.navbar -->
+        </article>
 
-        <div id="header">
-
-
-
-
-        </div>
-
-        <div class="row">
-          <h1 class="optima" id="home">
-            About me
-          </h1>
-        </div>
-        <div class="row">
-          <div class="column_info" style="column-gap:5px">
-            <p><span> 
-                I am a Senior Research Scientist on the ByteDance <a href="https://team.doubao.com/en/topseed">Seed</a> Team. I completed my Ph.D. in <a href="https://cemse.kaust.edu.sa/vcc">VCC</a>, <a
-                  href="https://www.kaust.edu.sa/en">KAUST</a>, supervised by Prof.<a
-                  href="http://peterwonka.net/">Peter Wonka</a>.
-                Before that, I obtained the M.Sc. degree from <a href="https://www.kaust.edu.sa/en">KAUST</a>, KSA, and
-                the B.Eng. degree from <a href="http://english.neu.edu.cn/">Northeastern University</a>, China.
-                My research focuses on generative AI, particularly diffusion models for video generation. I am also interested in
-                computer graphics and computer vision in general. </span></p>
-            <p><span> You can find my full CV <a
-                  href="https://zpdesu.github.io/files/PeihaoZhu_CV_2025_06.pdf">here</a>. </span></p>
-          </div>
-          <figure>
-            <p>
-              <img class="img-circle" src="images/view.jpg" height="100px" width="auto" align="center">
-            </p>
-          </figure>
-        </div>
-
-        
-        <div class="row">
-          <h1 class="optima" id="pub">
-            Projects
-            <!---<a href="https://orcid.org/0000-0003-3114-3517" style="color: #b2c046;font-size:22px"><i class="ai ai-orcid ai-lg"></i></a>&nbsp;<a href="https://arxiv.org/a/ren_j_2.html" style="color: #b31b1b; font-size:22px"><i class="ai ai-arxiv ai-lg"></i></a>&nbsp;<a href="https://scholar.google.com/citations?user=qkadBVcAAAAJ&hl=en" style="color: gray; font-size:22px"><i class="ai ai-google-scholar ai-lg"></i></a>&nbsp;<a href="https://github.com/llorz" style="color:#A34DAD; font-size:22px"><i class="fab fa-github fa-lg"></i></a>
---->
-          </h1>
-        </div>
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2022">
-            Dec 2024 - Present
-          </h3>
-        </div>
-        
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>ByteDance Video Generation Foundation Model - Seedance 1.0 </strong> </span><br>
-            <span> 
-              ByteDance Seed Team
-            </span><br>
-            <span> <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance%201.0%20Paper.pdf"><i class="fas fa-file-pdf"></i> paper</a>  </span>
-            <span> <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance1.0.mp4"><i class="fas fa-video"></i> video</a>  </span>
-            <span> <a href="https://seed.bytedance.com/en/seedance"><i class="fas fa-globe"></i> website</a>  </span><br>
-            <!-- </p> -->
-          </div>
-          <video controls width="360">
-            <source src="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance1.0.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2022">
-            Mar 2024 - Nov 2024
-          </h3>
-        </div>
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>ByteDance Video Generation Foundation Model - Seaweed</strong> </span><br>
-            <span> 
-              ByteDance Seed Team
-            </span><br>
-            <span> <a href="https://seaweed.video/seaweed.pdf"><i class="fas fa-file-pdf"></i> paper</a>  </span>
-            <span> <a href="files/Lark20250414-152107.mp4"><i class="fas fa-video"></i> video</a>  </span>
-            <span> <a href="https://seaweed.video/"><i class="fas fa-globe"></i> website</a>  </span><br>
-            <!-- </p> -->
-          </div>
-          <!-- <figure>
-            <p>
-              <img src="images/avatar.png" height="70px" width="auto" align="right">
-          </figure> -->
-          <video controls width="360">
-            <source src="files/Lark20250414-152107.mp4" type="video/mp4">
-          </video>
-        </div>
-        
-
-        <div class="row">
-          <h1 class="optima" id="pub">
-            Publications
-            <!---<a href="https://orcid.org/0000-0003-3114-3517" style="color: #b2c046;font-size:22px"><i class="ai ai-orcid ai-lg"></i></a>&nbsp;<a href="https://arxiv.org/a/ren_j_2.html" style="color: #b31b1b; font-size:22px"><i class="ai ai-arxiv ai-lg"></i></a>&nbsp;<a href="https://scholar.google.com/citations?user=qkadBVcAAAAJ&hl=en" style="color: gray; font-size:22px"><i class="ai ai-google-scholar ai-lg"></i></a>&nbsp;<a href="https://github.com/llorz" style="color:#A34DAD; font-size:22px"><i class="fab fa-github fa-lg"></i></a>
---->
-          </h1>
-        </div>
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2025">
-            2025
-          </h3>
-        </div>
-        
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Seedance 1.0: Exploring the Boundaries of Video Generation Models</strong> </span><br>
-            <span> ByteDance Seed 
-            </span><br> <span> <em>Technical Report, 2025</em>
-            </span><br> <span> <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance%201.0%20Paper.pdf"><i class="fas fa-file-pdf"></i> paper</a>  </span>
-            <span> <a href="https://seed.bytedance.com/en/seedance"><i class="fas fa-globe"></i> website</a>  </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/seadance.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Seaweed-7B: Cost-Effective Training of Video Generation Foundation Model</strong> </span><br>
-            <span> ByteDance Seed 
-            </span><br> <span> <em>Technical Report, 2025</em>
-            </span><br> <span> <a href="https://seaweed.video/seaweed.pdf"><i class="fas fa-file-pdf"></i> paper</a>  </span>
-            <span> <a href="https://seaweed.video/"><i class="fas fa-globe"></i> website</a>  </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/seaweed.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2023">
-            2023
-          </h3>
-        </div>
-        
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>3DAvatarGAN: Bridging Domains for Personalized Editable Avatars</strong> </span><br>
-            <span> <a href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <a href="http://hsinyinglee.com/">Hsin-Ying Lee</a>, 
-              <u>Peihao Zhu</u>, <a
-                href="https://mlchai.com/">Menglei Chai</a>, <a
-                href="https://aliaksandrsiarohin.github.io/aliaksandr-siarohin-website/"> Aliaksandr Siarohin</a> , <a
-                href="http://peterwonka.net/">Peter Wonka</a>,<a href="http://www.stulyakov.com/">Sergey Tulyakov</a>
-            </span><br> <span> <em>Proc. IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2023</em>
-            </span><br> <span> <a href="https://arxiv.org/pdf/2301.02700.pdf"><i class="fas fa-file-pdf"></i> paper</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/avatar.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2022">
-            2022
-          </h3>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>HairNet: Hairstyle Transfer with Pose Changes</strong> </span><br> <span> <u>Peihao Zhu</u>, <a
-                href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <a
-                href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John Femiani</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>Proc. European Conference on Computer Vision (ECCV), 2022</em> </span><br> <span> <a href="https://youtu.be/WBB43cgCFZM"><i class="fas fa-video"></i>
-                video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/HairNet.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>CLIP2StyleGAN: Unsupervised Extraction of StyleGAN Edit Directions</strong> </span><br> <span> <a href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>
-                  ,<u>Peihao Zhu</u>,<a
-                href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John Femiani</a>, <a href="http://www0.cs.ucl.ac.uk/staff/n.mitra/">Niloy J. Mitra</a>,<a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>SIGGRAPH Conference Proceedings, 2022</em> </span><br> <span> <a href="https://arxiv.org/abs/2112.05219"><i
-                  class="fas fa-file-pdf"></i> paper</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/Clip2StyleGAN.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Mind the Gap: Domain Gap Control for Single Shot Domain Adaptation for
-                Generative
-                Adversarial Networks</strong> </span><br> <span> <u>Peihao Zhu</u>, <a
-                href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <a
-                href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John Femiani</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>International Conference on
-                Learning
-                Representations (ICLR), 2022</em> </span><br> <span> <a href="https://arxiv.org/abs/2110.08398"><i
-                  class="fas fa-file-pdf"></i> paper</a>  <a href="https://github.com/ZPdesu/MindTheGap"><i class="fas fa-code"></i> code</a>   <a href="https://youtu.be/RLBJ-mem9gM"><i
-                  class="fas fa-video"></i>
-                video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/mind_the_gap.png" height="50px" width="auto" align="right">
-          </figure>
-        </div>
-
-
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2021">
-            2021
-          </h3>
-        </div>
-        <!---
-<hr width="60px" align="right" style="margin-top:-5px; border-width: 1px; margin-bottom:-3px" >
---->
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Barbershop: GAN-based Image Compositing using Segmentation Masks</strong>
-            </span><br> <span> <u>Peihao Zhu</u>, <a
-                href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <a
-                href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John Femiani</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>ACM Transactions on Graphics (Proc.
-                SIGGRAPH Asia), 2021</em> </span><br> <span> <a href="https://arxiv.org/abs/2106.01505"><i
-                  class="fas fa-file-pdf"></i> paper</a>   <a href="https://github.com/ZPdesu/Barbershop"><i
-                  class="fas fa-code"></i> code</a>   <a href="https://youtu.be/ZU-yrAvoJfQ"><i class="fas fa-video"></i>
-                video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/barbershop.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Improved StyleGAN Embedding: Where are the Good Latents?</strong> </span><br>
-            <span> <u>Peihao Zhu</u>, <a href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen
-                Abdal</a>, <a href="https://scholar.google.com/citations?user=ojgWPpgAAAAJ&hl=en">Yipeng Qin</a>, <a
-                href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John Femiani</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>ArXiv pre-print, 2021</em>
-            </span><br> <span> <a href="https://arxiv.org/abs/2012.09036"><i class="fas fa-file-pdf"></i> paper</a>   <a
-                href="https://youtu.be/6grbAFtKvBU"><i class="fas fa-video"></i> video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/II2S.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Styleflow: Attribute-conditioned exploration of stylegan-generated images
-                using conditional continuous normalizing flows</strong> </span><br> <span> <a
-                href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <u>Peihao
-                Zhu</u>, <a href="http://www0.cs.ucl.ac.uk/staff/n.mitra/">Niloy J. Mitra</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>ACM Transactions on Graphics (TOG),
-                2021</em> </span><br> <span> <a href="https://arxiv.org/abs/2008.02401"><i class="fas fa-file-pdf"></i>
-                paper</a>  <a href="https://github.com/RameenAbdal/StyleFlow"><i class="fas fa-code"></i> code</a>   <a
-                href="https://youtu.be/LRAUJUn3EqQ"><i class="fas fa-video"></i> video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/styleFlow.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Labels4Free: Unsupervised Segmentation using StyleGAN</strong> </span><br>
-            <span> <a href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <u>Peihao
-                Zhu</u>, <a href="http://www0.cs.ucl.ac.uk/staff/n.mitra/">Niloy J. Mitra</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>Proc. IEEE International Conference
-                on Computer Vision (ICCV), 2021</em> </span><br> <span> <a href="https://arxiv.org/abs/2103.14968"><i
-                  class="fas fa-file-pdf"></i> paper</a>   <a href="https://rameenabdal.github.io/Labels4Free/"><i
-                  class="fas fa-code"></i> code</a>  <a href="https://youtu.be/_pHunGpvLVk"><i class="fas fa-video"></i>
-                video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/label4free.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Flow-Guided Video Inpainting with Scene Templates</strong> </span><br> <span>
-              <a href="https://scholar.google.com/citations?user=dvQXYW0AAAAJ&hl=en">Dong Lao</a>, <u>Peihao Zhu</u>, <a
-                href="http://peterwonka.net/">Peter Wonka</a>, <a href="http://ganeshsun.com/">Ganesh Sundaramoorthi</a>
-            </span><br> <span> <em>Proc. IEEE International Conference on Computer Vision (ICCV), 2021</em> </span><br>
-            <span> <a href="https://arxiv.org/abs/2108.12845"><i class="fas fa-file-pdf"></i> paper</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/lao.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-
-
-        <div class="row" style="margin-top:-5px; margin-bottom:0px">
-          <h3 class="optima" id="2020">
-            2020
-          </h3>
-        </div>
-
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>SEAN: Image Synthesis with Semantic Region-Adaptive Normalization</strong>
-            </span><br> <span> <u>Peihao Zhu</u>, <a
-                href="https://scholar.google.com/citations?user=kEQimk0AAAAJ&hl=en">Rameen Abdal</a>, <a
-                href="https://scholar.google.com/citations?user=ojgWPpgAAAAJ&hl=en">Yipeng Qin</a>, <a
-                href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>Proc. IEEE Conference on Computer
-                Vision and Pattern Recognition (CVPR Oral), 2020</em> </span><br> <span> <a
-                href="https://arxiv.org/abs/1911.12861"><i class="fas fa-file-pdf"></i> paper</a>   <a
-                href="https://github.com/ZPdesu/SEAN"><i class="fas fa-code"></i> code</a>   <a
-                href="https://youtu.be/gqpMm0Ml2ZM"><i class="fas fa-video"></i> video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/sean.png" height="70px" width="auto" align="right">
-          </figure>
-        </div>
-        <div class="row">
-          <div class="column_paper" style="column-gap:20px">
-            <span class="optima"> <strong>Large Scale Architecture Asset Extraction from Panoramic Imagery</strong>
-            </span><br> <span> <u>Peihao Zhu</u>, <a href="https://cemse.kaust.edu.sa/people/person/wamiq-para">Wamiq
-                Reyaz Para</a>, <a href="https://scholar.google.com/citations?user=d0hUiVIAAAAJ&hl=en">Anna
-                Fruehstueck</a>, <a href="https://scholar.google.com/citations?user=rS1xJIIAAAAJ&hl=en">John
-                Femiani</a>, <a href="http://peterwonka.net/">Peter Wonka</a> </span><br> <span> <em>IEEE Transactions
-                on Visualization and Computer Graphics (TVCG), 2020</em> </span><br> <span> <a
-                href="https://ieeexplore.ieee.org/document/9145640"><i class="fas fa-file-pdf"></i> paper</a>   <a
-                href="https://github.com/ZPdesu/lsaa-dataset"><i class="fas fa-code"></i> code</a>   <a
-                href="https://youtu.be/XmQvwaIbbKE"><i class="fas fa-video"></i> video</a> </span><br>
-            </p>
-          </div>
-          <figure>
-            <p>
-              <img src="images/facade.png" height="42px" width="auto" align="right">
-          </figure>
-        </div>
-
-
-
-
-        <div class="row">
-          <h1 class="optima">
-            Education
-          </h1>
-        </div>
-        <div class="row">
-          <div class="column3">
-            <p>
-              <img src="images/kaust_logo.jpg" style="height:55px; margin-right:5px" align="left"> <span> Ph.D. in
-                Computer Science </span><br> <span class="optima"> <strong>KAUST, Visual Computing Center</strong>
-              </span><br> <span> <em>2019 - 2023</em> </span>
-            </p>
-          </div>
-          <div class="column3">
-            <p>
-              <img src="images/kaust_logo.jpg" style="height:55px; margin-right:5px" align="left"> <span> <span> M.Sc.
-                  in Computer Science </span><br> <span class="optima"> <strong>KAUST, Visual Computing Center</strong>
-                </span><br> <span> <em>2017 - 2019</em> </span>
-            </p>
-          </div>
-          <div class="column3">
-            <p>
-              <img src="images/neu.png" style="height:60px; margin-right:5px" align="left"> <span> B.Eng. in Automation
-              </span><br> <span class="optima"> <strong>Northeastern University</strong> </span><br> <span> <em>2012 -
-                  2016</em> </span>
-            </p>
-          </div>
-        </div>
-        <p><br></p>
-
-        <div class="row">
-          <h1 class="optima">
-            Work Experience
-          </h1>
-        </div>
-        <div class="row">
-          <div class="column3">
-            <p>
-              <img src="images/byte.jpg" style="height:55px; margin-right:5px" align="left"><strong>Seed Team, ByteDance</strong><br>
-              <span> Senior Research Scientist
-                 </span><br> <span class="optima"> 
-              </span><br> <span> <em>Sep 2024 - present</em> </span>
-            </p>
-          </div>
-        </div>
-        <!-- <p><br></p> -->
-        <div class="row">
-          <div class="column3">
-            <p>
-              <img src="images/byte.jpg" style="height:55px; margin-right:5px" align="left"><strong>Seed Team, ByteDance</strong><br>
-              <span> Research Scientist
-                 </span><br> <span class="optima"> 
-              </span><br> <span> <em>Jul 2023 - Aug 2024</em> </span>
-            </p>
-          </div>
-        </div>
-        <!-- <p><br></p> -->
-        <div class="row">
-          <div class="column3">
-            <p>
-              <img src="images/meta.jpg" style="height:55px; margin-right:5px" align="left"><strong>Reality Lab, Meta</strong><br>
-              <span> Research Intern
-                 </span><br> <span class="optima"> 
-              </span><br> <span> <em>Oct 2022 - Feb 2023</em> </span>
-            </p>
-          </div>
-        </div>
-        <!-- <p><br></p> -->
-        <div class="row">
-          <div class="column3">
-            <p>
-              <img src="images/snapchat.png" style="height:55px; margin-right:5px" align="left"><strong>Creative Vision Lab, Snap</strong><br> 
-              <span> Research Intern
-                 </span><br> <span class="optima"> 
-              </span><br> <span> <em>May 2022 - Sep 2022</em> </span>
-            </p>
-          </div>
-        </div>
-        <p><br></p>
-
-
-        <div class="row">
-          <h1 class="optima">
-            Contact
-          </h1>
-        </div>
-        <div class="row">
-          <div class="column3">
-            <p>
-              <strong>Address</strong><br>Santa Clara, CA, USA
-          </div>
-          <div class="row">
-            <div class="column3">
-              <p>
-                <strong>Email</strong><br>zhupeishishen@gmail.com
+        <!-- Seedance -->
+        <article class="project">
+          <img class="project-thumb" src="images/seadance.png" alt="Seedance 1.0">
+          <div class="project-body">
+            <h3>Seedance 1.0 — Video Generation Foundation Model</h3>
+            <p class="meta"><span class="role">Core Contributor</span> · Video Foundation Models · Dec 2024 – Jun 2025</p>
+            <p class="desc">A main contributor to the development and large-scale training of Seedance 1.0. Designed and
+              implemented the distributed data-loading system and large-scale VAE-latent and text-embedding
+              precomputation pipelines underlying the model.</p>
+            <div class="links">
+              <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance%201.0%20Paper.pdf"
+                target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance1.0.mp4" target="_blank"
+                rel="noopener"><i class="fas fa-video"></i> video</a>
+              <a href="https://seed.bytedance.com/en/seedance" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> website</a>
             </div>
-            <div class="row">
-              <div class="column3">
-                <p>
-                  <strong>Phone</strong><br>(+1) 4242939085
-              </div>
+          </div>
+        </article>
 
+        <!-- Seaweed -->
+        <article class="project">
+          <img class="project-thumb" src="images/seaweed.png" alt="Seaweed-7B">
+          <div class="project-body">
+            <h3>Seaweed-7B — Video Generation Foundation Model</h3>
+            <p class="meta"><span class="role">Founding / Core Contributor</span> · Video Foundation Models · Mar 2024 – Nov 2024</p>
+            <p class="desc">Built Seaweed-7B from its early stage as a main contributor. Designed the VAE for efficient
+              visual-information compression and built the distributed data-loading system for reliable,
+              high-throughput video-model training.</p>
+            <div class="links">
+              <a href="https://seaweed.video/seaweed.pdf" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="files/Lark20250414-152107.mp4" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+              <a href="https://seaweed.video/" target="_blank" rel="noopener"><i class="fas fa-globe"></i> website</a>
             </div>
-            <p><br></p>
+          </div>
+        </article>
 
+        <!-- TikTok AI-moji -->
+        <article class="project">
+          <div class="project-thumb ph" style="background:linear-gradient(135deg,#111,#444)">AI</div>
+          <div class="project-body">
+            <h3>TikTok AI-moji</h3>
+            <p class="meta"><span class="role">Core Contributor</span> · Generative Avatars · Jul 2023 – Dec 2024</p>
+            <p class="desc">Drove generative-avatar model development for TikTok AI-moji, from research prototyping
+              through product deployment — personalization and generation of stylized avatars from user images at
+              product scale.</p>
+            <div class="links">
+              <a href="https://www.socialmediatoday.com/news/tiktok-tests-ai-moji-digital-avatars/714522/"
+                target="_blank" rel="noopener"><i class="fas fa-newspaper"></i> blog</a>
+              <a href="https://www.tiktok.com/discover/aimoji" target="_blank" rel="noopener"><i
+                  class="fas fa-mobile-alt"></i> platform</a>
+            </div>
+          </div>
+        </article>
 
+      </div>
+    </section>
 
+    <!-- ============ PUBLICATIONS ============ -->
+    <section id="publications" class="reveal">
+      <div class="sec-head">
+        <h2>Publications</h2>
+        <span class="sec-rule"></span>
+      </div>
 
+      <!-- Selected -->
+      <div id="selected-pubs">
 
-            <style type="text/css">
-              #TOC {
-                left: 50px;
-                width: 200px;
-                margin: 20px 0px 0px 0px;
-              }
+        <div class="pub">
+          <img class="pub-thumb" src="images/mmcore.jpg" alt="MMCORE">
+          <div class="pub-body">
+            <p class="pub-title">MMCORE: MultiModal COnnection with Representation Aligned Latent Embeddings</p>
+            <p class="pub-authors">ByteDance Seed</p>
+            <p class="pub-venue">Technical Report, 2026</p>
+            <div class="links">
+              <a href="https://arxiv.org/pdf/2604.19902" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://zijieli-jlee.github.io/mmcore-website/" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> webpage</a>
+            </div>
+          </div>
+        </div>
 
-              .main-container {
-                margin-left: 20px;
-              }
-            </style>
-            <style type="text/css">
-              .column {
-                float: left;
-                margin-left: 0px;
-                margin-right: 0px;
-                width: 20%;
-              }
+        <div class="pub">
+          <img class="pub-thumb" src="images/seadance.png" alt="Seedance 1.0">
+          <div class="pub-body">
+            <p class="pub-title">Seedance 1.0: Exploring the Boundaries of Video Generation Models</p>
+            <p class="pub-authors">ByteDance Seed</p>
+            <p class="pub-venue">Technical Report, 2025</p>
+            <div class="links">
+              <a href="https://lf3-static.bytednsdoc.com/obj/eden-cn/bdeh7uhpsuht/Seedance%201.0%20Paper.pdf"
+                target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://seed.bytedance.com/en/seedance" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> webpage</a>
+            </div>
+          </div>
+        </div>
 
-              .column2 {
-                float: left;
-                margin-left: 0px;
-                margin-right: 0px;
-                width: 50%;
-              }
+        <div class="pub">
+          <img class="pub-thumb" src="images/seaweed.png" alt="Seaweed-7B">
+          <div class="pub-body">
+            <p class="pub-title">Seaweed-7B: Cost-Effective Training of Video Generation Foundation Model</p>
+            <p class="pub-authors">ByteDance Seed</p>
+            <p class="pub-venue">Technical Report, 2025</p>
+            <div class="links">
+              <a href="https://seaweed.video/seaweed.pdf" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://seaweed.video/" target="_blank" rel="noopener"><i class="fas fa-globe"></i> webpage</a>
+            </div>
+          </div>
+        </div>
 
-              .column3 {
-                float: left;
-                margin-left: 0px;
-                margin-right: 0px;
-                width: 33%;
-              }
+        <div class="pub">
+          <img class="pub-thumb" src="images/barbershop.png" alt="Barbershop">
+          <div class="pub-body">
+            <p class="pub-title">Barbershop: GAN-based Image Compositing using Segmentation Masks</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Rameen Abdal, John Femiani, Peter Wonka</p>
+            <p class="pub-venue">ACM Transactions on Graphics (Proc. SIGGRAPH Asia), 2021</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2106.01505" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://github.com/ZPdesu/Barbershop" target="_blank" rel="noopener"><i class="fas fa-code"></i>
+                code</a>
+              <a href="https://youtu.be/ZU-yrAvoJfQ" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
 
-              .row:after {
-                content: "";
-                display: table;
-                clear: both;
-              }
-
-              @media screen and (max-width: 600px) {
-                .column {
-                  width: 100%;
-                }
-              }
-
-              .column_info {
-                float: left;
-                margin-left: 0px;
-                width: 85%
-              }
-
-              .column_paper {
-                float: left;
-                margin-left: 5px;
-                width: 73%
-              }
-
-              .left_paper {
-                width: 27%;
-              }
-
-
-              .img-circle {
-                border-radius: 50%;
-              }
-
-
-
-              h1.optima {
-                font-size: 25px;
-                font-family: optima;
-                margin-bottom: 10pt
-              }
-
-
-              h3.optima {
-                font-size: 20px;
-                font-family: optima;
-                color: #2880e3
-              }
-
-
-              span.optima {
-                font-family: optima, Sans-serif
-              }
-            </style>
-
-
-
+        <div class="pub">
+          <img class="pub-thumb" src="images/sean.png" alt="SEAN">
+          <div class="pub-body">
+            <p class="pub-title">SEAN: Image Synthesis with Semantic Region-Adaptive Normalization</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Rameen Abdal, Yipeng Qin, Peter Wonka</p>
+            <p class="pub-venue">Proc. IEEE CVPR <span class="oral">(Oral)</span>, 2020</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/1911.12861" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="https://github.com/ZPdesu/SEAN" target="_blank" rel="noopener"><i class="fas fa-code"></i>
+                code</a>
+              <a href="https://youtu.be/gqpMm0Ml2ZM" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
           </div>
         </div>
 
       </div>
 
-      <script>
+      <!-- Full list (rest), revealed on toggle -->
+      <div id="more-pubs">
 
-        // add bootstrap table styles to pandoc tables
-        function bootstrapStylePandocTables() {
-          $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
-        }
-        $(document).ready(function () {
-          bootstrapStylePandocTables();
+        <div class="pub-year">2023</div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/avatar.png" alt="3DAvatarGAN">
+          <div class="pub-body">
+            <p class="pub-title">3DAvatarGAN: Bridging Domains for Personalized Editable Avatars</p>
+            <p class="pub-authors">Rameen Abdal, Hsin-Ying Lee, <span class="me">Peihao Zhu</span>, Menglei Chai,
+              Aliaksandr Siarohin, Peter Wonka, Sergey Tulyakov</p>
+            <p class="pub-venue">Proc. IEEE CVPR, 2023</p>
+            <div class="links">
+              <a href="https://arxiv.org/pdf/2301.02700.pdf" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-year">2022</div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/HairNet.png" alt="HairNet">
+          <div class="pub-body">
+            <p class="pub-title">HairNet: Hairstyle Transfer with Pose Changes</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Rameen Abdal, John Femiani, Peter Wonka</p>
+            <p class="pub-venue">Proc. European Conference on Computer Vision (ECCV), 2022</p>
+            <div class="links">
+              <a href="https://youtu.be/WBB43cgCFZM" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/Clip2StyleGAN.png" alt="CLIP2StyleGAN">
+          <div class="pub-body">
+            <p class="pub-title">CLIP2StyleGAN: Unsupervised Extraction of StyleGAN Edit Directions</p>
+            <p class="pub-authors">Rameen Abdal, <span class="me">Peihao Zhu</span>, John Femiani, Niloy J. Mitra, Peter
+              Wonka</p>
+            <p class="pub-venue">SIGGRAPH Conference Proceedings, 2022</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2112.05219" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/mind_the_gap.png" alt="Mind the Gap">
+          <div class="pub-body">
+            <p class="pub-title">Mind the Gap: Domain Gap Control for Single Shot Domain Adaptation for GANs</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Rameen Abdal, John Femiani, Peter Wonka</p>
+            <p class="pub-venue">International Conference on Learning Representations (ICLR), 2022</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2110.08398" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="https://github.com/ZPdesu/MindTheGap" target="_blank" rel="noopener"><i class="fas fa-code"></i>
+                code</a>
+              <a href="https://youtu.be/RLBJ-mem9gM" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-year">2021</div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/II2S.png" alt="Improved StyleGAN Embedding">
+          <div class="pub-body">
+            <p class="pub-title">Improved StyleGAN Embedding: Where are the Good Latents?</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Rameen Abdal, Yipeng Qin, John Femiani, Peter
+              Wonka</p>
+            <p class="pub-venue">ArXiv pre-print, 2021</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2012.09036" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="https://youtu.be/6grbAFtKvBU" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/styleFlow.png" alt="StyleFlow">
+          <div class="pub-body">
+            <p class="pub-title">StyleFlow: Attribute-conditioned Exploration of StyleGAN-Generated Images using
+              Conditional Continuous Normalizing Flows</p>
+            <p class="pub-authors">Rameen Abdal, <span class="me">Peihao Zhu</span>, Niloy J. Mitra, Peter Wonka</p>
+            <p class="pub-venue">ACM Transactions on Graphics (TOG), 2021</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2008.02401" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="https://github.com/RameenAbdal/StyleFlow" target="_blank" rel="noopener"><i
+                  class="fas fa-code"></i> code</a>
+              <a href="https://youtu.be/LRAUJUn3EqQ" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/label4free.png" alt="Labels4Free">
+          <div class="pub-body">
+            <p class="pub-title">Labels4Free: Unsupervised Segmentation using StyleGAN</p>
+            <p class="pub-authors">Rameen Abdal, <span class="me">Peihao Zhu</span>, Niloy J. Mitra, Peter Wonka</p>
+            <p class="pub-venue">Proc. IEEE ICCV, 2021</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2103.14968" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+              <a href="https://rameenabdal.github.io/Labels4Free/" target="_blank" rel="noopener"><i
+                  class="fas fa-globe"></i> project</a>
+              <a href="https://youtu.be/_pHunGpvLVk" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/lao.png" alt="Flow-Guided Video Inpainting">
+          <div class="pub-body">
+            <p class="pub-title">Flow-Guided Video Inpainting with Scene Templates</p>
+            <p class="pub-authors">Dong Lao, <span class="me">Peihao Zhu</span>, Peter Wonka, Ganesh Sundaramoorthi</p>
+            <p class="pub-venue">Proc. IEEE ICCV, 2021</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2108.12845" target="_blank" rel="noopener"><i class="fas fa-file-pdf"></i>
+                paper</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-year">2020</div>
+        <div class="pub">
+          <img class="pub-thumb" src="images/facade.png" alt="Large Scale Architecture Asset Extraction">
+          <div class="pub-body">
+            <p class="pub-title">Large Scale Architecture Asset Extraction from Panoramic Imagery</p>
+            <p class="pub-authors"><span class="me">Peihao Zhu</span>, Wamiq Reyaz Para, Anna Fruehstueck, John Femiani,
+              Peter Wonka</p>
+            <p class="pub-venue">IEEE Transactions on Visualization and Computer Graphics (TVCG), 2020</p>
+            <div class="links">
+              <a href="https://ieeexplore.ieee.org/document/9145640" target="_blank" rel="noopener"><i
+                  class="fas fa-file-pdf"></i> paper</a>
+              <a href="https://github.com/ZPdesu/lsaa-dataset" target="_blank" rel="noopener"><i
+                  class="fas fa-code"></i> code</a>
+              <a href="https://youtu.be/XmQvwaIbbKE" target="_blank" rel="noopener"><i class="fas fa-video"></i>
+                video</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="show-all">
+        <button id="togglePubs" aria-expanded="false">
+          <span>Show all publications</span> <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="reveal">
+      <div class="sec-head">
+        <h2>Experience</h2>
+        <span class="sec-rule"></span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <img class="tl-logo" src="images/firefly.svg" alt="Adobe Firefly">
+          <div class="tl-main">
+            <p class="tl-role">Senior Applied Scientist</p>
+            <p class="tl-org">Firefly, Adobe · San Jose, CA</p>
+          </div>
+          <div class="tl-date">Jan 2026 – Present</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/byte.jpg" alt="ByteDance">
+          <div class="tl-main">
+            <p class="tl-role">Senior Research Scientist</p>
+            <p class="tl-org">Seed Team, ByteDance · San Jose, CA</p>
+          </div>
+          <div class="tl-date">Sep 2024 – Jan 2026</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/byte.jpg" alt="ByteDance">
+          <div class="tl-main">
+            <p class="tl-role">Research Scientist</p>
+            <p class="tl-org">Seed Team, ByteDance · San Jose, CA</p>
+          </div>
+          <div class="tl-date">Jul 2023 – Aug 2024</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/meta.jpg" alt="Meta">
+          <div class="tl-main">
+            <p class="tl-role">Research Scientist Intern</p>
+            <p class="tl-org">Reality Lab, Meta · Burlingame, CA</p>
+          </div>
+          <div class="tl-date">Oct 2022 – Feb 2023</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/snapchat.png" alt="Snap">
+          <div class="tl-main">
+            <p class="tl-role">Research Scientist Intern</p>
+            <p class="tl-org">Creative Vision Lab, Snap · Los Angeles, CA</p>
+          </div>
+          <div class="tl-date">May 2022 – Sep 2022</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="reveal">
+      <div class="sec-head">
+        <h2>Education</h2>
+        <span class="sec-rule"></span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <img class="tl-logo" src="images/kaust_logo.jpg" alt="KAUST">
+          <div class="tl-main">
+            <p class="tl-role">Ph.D. in Computer Science</p>
+            <p class="tl-org">KAUST, Visual Computing Center · Saudi Arabia</p>
+          </div>
+          <div class="tl-date">2019 – 2023</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/kaust_logo.jpg" alt="KAUST">
+          <div class="tl-main">
+            <p class="tl-role">M.Sc. in Computer Science</p>
+            <p class="tl-org">KAUST, Visual Computing Center · Saudi Arabia</p>
+          </div>
+          <div class="tl-date">2017 – 2019</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/cas.png" alt="Chinese Academy of Sciences">
+          <div class="tl-main">
+            <p class="tl-role">M.Sc. Candidate in Computer Science</p>
+            <p class="tl-org">Institute of Automation, Chinese Academy of Sciences · China</p>
+          </div>
+          <div class="tl-date">2016 – 2017</div>
+        </div>
+        <div class="tl-item">
+          <img class="tl-logo" src="images/neu.png" alt="Northeastern University">
+          <div class="tl-main">
+            <p class="tl-role">B.Eng. in Automation <span style="color:var(--faint);font-weight:400;font-size:13px;">· GPA 90/100, Top 5%</span></p>
+            <p class="tl-org">Northeastern University · China</p>
+          </div>
+          <div class="tl-date">2012 – 2016</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AWARDS ============ -->
+    <section id="awards" class="reveal">
+      <div class="sec-head">
+        <h2>Awards &amp; Honors</h2>
+        <span class="sec-rule"></span>
+      </div>
+      <ul class="awards">
+        <li><span>KAUST CEMSE Dean's List Award</span><span class="yr">2021 – 2022</span></li>
+        <li><span>KAUST Fellowship</span><span class="yr">2017</span></li>
+        <li><span>UCAS Scholarship</span><span class="yr">2016</span></li>
+        <li><span>National Scholarship</span><span class="yr">2013</span></li>
+        <li><span>Scholarship for Outstanding Merits</span><span class="yr">2012 – 2016</span></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-contact">
+        <span><i class="fas fa-map-marker-alt" style="color:var(--faint)"></i> San Jose, CA, USA</span>
+        <span><i class="fas fa-envelope" style="color:var(--faint)"></i> <a
+            href="mailto:zhupeishishen@gmail.com">zhupeishishen@gmail.com</a></span>
+      </div>
+      <p class="foot-note">© <span id="year"></span> Peihao Zhu</p>
+    </div>
+  </footer>
+
+  <script>
+    // ---- Theme toggle ----
+    var toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) { }
+    });
+
+    // ---- Nav border on scroll ----
+    var nav = document.getElementById('nav');
+    function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ---- Show all publications ----
+    var btn = document.getElementById('togglePubs');
+    var more = document.getElementById('more-pubs');
+    btn.addEventListener('click', function () {
+      var open = more.classList.toggle('show');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open);
+      btn.querySelector('span').textContent = open ? 'Show fewer publications' : 'Show all publications';
+    });
+
+    // ---- Reveal on scroll ----
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
         });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
 
-
-      </script>
-
-      <!-- tabsets -->
-
-      <script>
-        $(document).ready(function () {
-          window.buildTabsets("TOC");
-        });
-
-        $(document).ready(function () {
-          $('.tabset-dropdown > .nav-tabs > li').click(function () {
-            $(this).parent().toggleClass('nav-tabs-open');
-          });
-        });
-      </script>
-
-      <!-- code folding -->
-
-      <script>
-        $(document).ready(function () {
-
-          // move toc-ignore selectors from section div to header
-          $('div.section.toc-ignore')
-            .removeClass('toc-ignore')
-            .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-          // establish options
-          var options = {
-            selectors: "h1,h2,h3",
-            theme: "bootstrap3",
-            context: '.toc-content',
-            hashGenerator: function (text) {
-              return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-            },
-            ignoreSelector: ".toc-ignore",
-            scrollTo: 0
-          };
-          options.showAndHide = true;
-          options.smoothScroll = true;
-
-          // tocify
-          var toc = $("#TOC").tocify(options).data("toc-tocify");
-        });
-      </script>
-
-      <!-- dynamically load mathjax for compatibility with self-contained -->
-      <script>
-        (function () {
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          script.src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-          document.getElementsByTagName("head")[0].appendChild(script);
-        })();
-      </script>
+    // ---- Year ----
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 
