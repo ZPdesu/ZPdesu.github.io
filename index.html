@@ -258,6 +258,19 @@
     .pub-venue { font-size: 13px; color: var(--faint); font-style: italic; margin: 0 0 8px; }
     .pub-venue .oral { color: var(--accent-ink); font-style: normal; font-weight: 600; }
 
+    .pub-controls { margin-top: 20px; text-align: center; }
+    .pub-controls[hidden], #more-pubs[hidden] { display: none; }
+    .pub-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font: inherit; font-size: 13px;
+      padding: 8px 14px; border-radius: 9px; cursor: pointer;
+      transition: color .15s ease, border-color .15s ease;
+    }
+    .pub-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+    .pub-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .pub-toggle i { font-size: 10px; }
+
     @media (max-width: 540px) {
       .pub { grid-template-columns: 1fr; gap: 12px; }
       .pub-thumb { width: 100%; height: 120px; }
@@ -715,6 +728,12 @@
 
       </div>
 
+      <div class="pub-controls" id="pubControls" hidden>
+        <button class="pub-toggle" id="togglePubs" type="button" aria-expanded="true" aria-controls="more-pubs">
+          <span>Collapse earlier publications</span>
+          <i class="fas fa-chevron-up" aria-hidden="true"></i>
+        </button>
+      </div>
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
@@ -853,6 +872,29 @@
     function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+
+    // ---- Optional publications collapse (expanded by default) ----
+    var pubButton = document.getElementById('togglePubs');
+    var earlierPubs = document.getElementById('more-pubs');
+    document.getElementById('pubControls').hidden = false;
+    pubButton.addEventListener('click', function () {
+      var collapse = !earlierPubs.hidden;
+      var previousTop = pubButton.getBoundingClientRect().top;
+      earlierPubs.hidden = collapse;
+      pubButton.setAttribute('aria-expanded', String(!collapse));
+      pubButton.querySelector('span').textContent = collapse
+        ? 'Show earlier publications' : 'Collapse earlier publications';
+      pubButton.querySelector('i').className = collapse
+        ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+
+      // Keep the collapse button in place instead of jumping into the next section.
+      if (collapse && previousTop >= 84 && previousTop < window.innerHeight) {
+        window.scrollTo({
+          top: window.scrollY + pubButton.getBoundingClientRect().top - previousTop,
+          behavior: 'instant'
+        });
+      }
+    });
 
     // ---- Reveal on scroll ----
     if ('IntersectionObserver' in window) {
